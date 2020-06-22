@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS13ServerApi", "SS13ServerApi\SS13ServerApi.csproj", "{E6432E75-ACC4-442F-9598-8712EC26942D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6432E75-ACC4-442F-9598-8712EC26942D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6432E75-ACC4-442F-9598-8712EC26942D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6432E75-ACC4-442F-9598-8712EC26942D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6432E75-ACC4-442F-9598-8712EC26942D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB5F3158-2B71-42B1-895F-469E6989A219}
+	EndGlobalSection
+EndGlobal
