@@ -19,7 +19,7 @@ namespace SS13ServerApi.Controllers
         public ActionResult GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
 
-            if (address == "127.0.0.1" || address == "localhost")
+            if (!Utils.IsValidAddress(address))
             {
                 ObjectResult ResponseObject = BadRequest(new
                 {
