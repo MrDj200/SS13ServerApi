@@ -18,17 +18,9 @@ namespace SS13ServerApi.Controllers
         [HttpGet("status")]
         public ActionResult GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
-
             if (!Utils.IsValidAddress(address))
             {
-                ObjectResult ResponseObject = BadRequest(new
-                {
-                    Title = "You cheeky mofo",
-                    Status = 405,
-                    Errors = new Dictionary<string, string[]> { { "address", new[] { $"The value '{address}' is not valid" } } }
-                });
-                ResponseObject.StatusCode = 405;
-                return ResponseObject;
+                return BadRequest();
             }
             try
             {
@@ -36,12 +28,13 @@ namespace SS13ServerApi.Controllers
                 QueryResponse queryResponse = topic.Query("status");
                 return Ok(new SS13Status(queryResponse));
             }
-            catch (System.Net.Sockets.SocketException)
+            catch (System.Net.Sockets.SocketException e)
             {
                 return BadRequest(new
                 {
                     Title = "One or more validation errors occured",
                     Status = 400,
+                    ErrorMessage = e.Message,
                     Errors = new Dictionary<string, string[]> { { "address", new[] { $"The value '{address}' is not valid" } } }
                 });
             }
