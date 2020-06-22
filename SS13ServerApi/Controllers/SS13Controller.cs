@@ -18,6 +18,18 @@ namespace SS13ServerApi.Controllers
         [HttpGet("status")]
         public ActionResult GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
+
+            if (address == "127.0.0.1" || address == "localhost")
+            {
+                ObjectResult ResponseObject = BadRequest(new
+                {
+                    Title = "You cheeky mofo",
+                    Status = 405,
+                    Errors = new Dictionary<string, string[]> { { "address", new[] { $"The value '{address}' is not valid" } } }
+                });
+                ResponseObject.StatusCode = 405;
+                return ResponseObject;
+            }
             try
             {
                 TopicSource topic = new TopicSource(address, port);
