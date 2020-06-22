@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,9 +40,9 @@ namespace SS13ServerApi.Controllers
 #endif
 
         [HttpGet("status")]
-        public ActionResult GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
+        public async Task<ActionResult> GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
-            if (!Utils.IsValidAddress(address))
+            if (!await Utils.IsValidAddress(address))
             {
                 return BadRequest();
             }
