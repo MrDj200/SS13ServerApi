@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="ByondTopic" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.6.1" />
   </ItemGroup>
 

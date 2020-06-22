@@ -13,25 +13,21 @@ namespace SS13ServerApi.Controllers
         [HttpGet("status")]
         public ActionResult GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
-            ActionResult returner;
-            TopicSource topic = new TopicSource(address, port);
-
             try
             {
+                TopicSource topic = new TopicSource(address, port);
                 QueryResponse queryResponse = topic.Query("status");
-                returner = Ok(queryResponse.AsDictionary);
+                return Ok(queryResponse.ProperJson());
             }
             catch (System.Net.Sockets.SocketException)
             {
-                returner = BadRequest(new
+                return BadRequest(new
                 {
                     Title = "One ore more validation errors occured",
                     Status = 400,
                     Errors = new Dictionary<string, string[]> { { "address", new[] { $"The value '{address}' is not valid" } } }
                 });
             }
-            return returner;
-
         }
     }
 }
