@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SS13ServerApi.Services;
 
 namespace SS13ServerApi
 {
@@ -28,6 +29,8 @@ namespace SS13ServerApi
 
             // Register the Swagger services
             services.AddSwaggerDocument();
+
+            services.AddSingleton<AccessControllService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

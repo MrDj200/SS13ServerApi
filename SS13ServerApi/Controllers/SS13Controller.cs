@@ -1,6 +1,7 @@
 ﻿using ByondTopic;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
+using SS13ServerApi.Attributes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace SS13ServerApi.Controllers
 {
     [Route("[controller]")]
+    [RequestRateLimit(MaxAmount = 20, Seconds = 1)]
     [ApiController]
     public class SS13Controller : ControllerBase
     {
@@ -39,7 +41,7 @@ namespace SS13ServerApi.Controllers
         }
 #endif
 
-        [HttpGet("status")]
+        [HttpGet("status")]        
         public async Task<ActionResult> GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
             if (!await Utils.IsValidAddress(address))
