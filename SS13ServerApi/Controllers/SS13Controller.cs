@@ -15,14 +15,15 @@ namespace SS13ServerApi.Controllers
         [OpenApiIgnore]
         public ActionResult Get() => Redirect("/swagger/index.html#/SS13");
 
+#if DEBUG
         [HttpGet("test")]
         public ActionResult Test([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337, [FromQuery] string query = "status")
         {
             try
             {
                 TopicSource topic = new TopicSource(address, port);
-                QueryResponse queryResponse = topic.Query(query);
-                return Ok(queryResponse);
+                var queryResponse = topic.Query(query);
+                return Ok(queryResponse.ToString());
             }
             catch (System.Net.Sockets.SocketException e)
             {
@@ -35,6 +36,7 @@ namespace SS13ServerApi.Controllers
                 });
             }
         }
+#endif
 
         [HttpGet("status")]
         public ActionResult GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
@@ -46,8 +48,8 @@ namespace SS13ServerApi.Controllers
             try
             {
                 TopicSource topic = new TopicSource(address, port);
-                QueryResponse queryResponse = topic.Query("status");
-                return Ok(new SS13Status(queryResponse));
+                var queryResponse = topic.Query("status");
+                return Ok(new SS13Status(queryResponse.AsText));
             }
             catch (System.Net.Sockets.SocketException e)
             {
