@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS13ServerApi", "SS13ServerApi\SS13ServerApi.csproj", "{E6432E75-ACC4-442F-9598-8712EC26942D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{23BD584F-B9A8-44F8-A092-6279F4446B3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E6432E75-ACC4-442F-9598-8712EC26942D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6432E75-ACC4-442F-9598-8712EC26942D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6432E75-ACC4-442F-9598-8712EC26942D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23BD584F-B9A8-44F8-A092-6279F4446B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BD584F-B9A8-44F8-A092-6279F4446B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BD584F-B9A8-44F8-A092-6279F4446B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BD584F-B9A8-44F8-A092-6279F4446B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

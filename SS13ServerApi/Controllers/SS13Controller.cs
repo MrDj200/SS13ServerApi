@@ -15,6 +15,27 @@ namespace SS13ServerApi.Controllers
         [OpenApiIgnore]
         public ActionResult Get() => Redirect("/swagger/index.html#/SS13");
 
+        [HttpGet("test")]
+        public ActionResult Test([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337, [FromQuery] string query = "status")
+        {
+            try
+            {
+                TopicSource topic = new TopicSource(address, port);
+                QueryResponse queryResponse = topic.Query(query);
+                return Ok(queryResponse);
+            }
+            catch (System.Net.Sockets.SocketException e)
+            {
+                return BadRequest(new
+                {
+                    Title = "One or more validation errors occured",
+                    Status = 400,
+                    ErrorMessage = e.Message,
+                    Errors = new Dictionary<string, string[]> { { "address", new[] { $"The value '{address}' is not valid" } } }
+                });
+            }
+        }
+
         [HttpGet("status")]
         public ActionResult GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
