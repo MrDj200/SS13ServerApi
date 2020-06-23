@@ -30,7 +30,7 @@ namespace SS13ServerApi
             // Register the Swagger services
             services.AddSwaggerDocument();
 
-            services.AddSingleton<AccessControllService>();
+            services.AddSingleton<AccessControlService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

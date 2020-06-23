@@ -4,7 +4,7 @@ using System.Net;
 
 namespace SS13ServerApi.Services
 {
-    public class AccessControllService
+    public class AccessControlService
     {
         public Dictionary<IPAddress, AccessInfo> Data { get; set; } = new Dictionary<IPAddress, AccessInfo>();
     }

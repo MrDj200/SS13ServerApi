@@ -15,7 +15,7 @@ namespace SS13ServerApi.Attributes
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            var service = context.HttpContext.RequestServices.GetService<AccessControllService>();
+            var service = context.HttpContext.RequestServices.GetService<AccessControlService>();
             IPAddress ipAddress = context.HttpContext.Connection.RemoteIpAddress;
 
             if (!service.Data.ContainsKey(ipAddress))
