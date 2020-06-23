@@ -58,6 +58,7 @@ namespace SS13ServerApi.Controllers
             }
             catch (System.Net.Sockets.SocketException e)
             {
+                // Return badrequest to tell the consumer they fucked up
                 return BadRequest(new
                 {
                     Title = "One or more validation errors occured",
