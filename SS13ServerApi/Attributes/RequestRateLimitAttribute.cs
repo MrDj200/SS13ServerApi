@@ -21,6 +21,7 @@ namespace SS13ServerApi.Attributes
             if (!service.Data.ContainsKey(ipAddress))
             {
                 service.Data.Add(ipAddress, new AccessInfo());
+                return;
             }
             if ((DateTime.Now - service.Data[ipAddress].CreatedTime).TotalSeconds >= Seconds)
             {
