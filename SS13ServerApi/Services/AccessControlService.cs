@@ -13,6 +13,7 @@ namespace SS13ServerApi.Services
     {
         public DateTime CreatedTime { get; set; } = DateTime.Now;
         public int Counter { get; set; } = 1;
+        public int LifespanSeconds { get; set; } = 20;
     }
 
 }
