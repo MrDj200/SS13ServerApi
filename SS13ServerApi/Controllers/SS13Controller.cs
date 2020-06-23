@@ -41,7 +41,8 @@ namespace SS13ServerApi.Controllers
         }
 #endif
 
-        [HttpGet("status")]        
+        [HttpGet("status")]
+        [OpenApiOperation(Constants.SS13StatusSummary, Constants.SS13StatusDescription)]
         public async Task<ActionResult> GetServerInfo([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337)
         {
             if (!await Utils.IsValidAddress(address))
