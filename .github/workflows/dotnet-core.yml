@@ -1,0 +1,25 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.300
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build Linux
+      run: dotnet publish -r linux-x64 --no-restore -c Release -f netcoreapp3.1 --self-contained true -p:PublishSingleFile=true -o assembly/linux/
+    - name: Build Windows
+      run: dotnet publish -r win-x64 --no-restore -c Release -f netcoreapp3.1 --self-contained true -p:PublishSingleFile=true -o assembly/windows/
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
