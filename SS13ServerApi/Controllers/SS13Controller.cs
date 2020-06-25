@@ -2,7 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using SS13ServerApi.Attributes;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -40,6 +45,24 @@ namespace SS13ServerApi.Controllers
             }
         }
 #endif
+        [HttpGet("hubInfoJson")]
+        [OpenApiOperation(Constants.SS13HubToJsonSummary, Constants.SS13HubToJsonDescription)]
+        public async Task<ActionResult> GetHubInfoJson()
+        {
+            string hubUri = "http://www.byond.com/games/Exadv1/SpaceStation13?format=text";
+            string response = await Utils.MakeGetRequest(hubUri);
+
+            var entries = IndentedTextParser.Parse(response.Split(Environment.NewLine));
+            var returnBuilder = new StringBuilder();
+            returnBuilder.Append("[");
+            foreach (var item in entries)
+            {
+                returnBuilder.Append(item.ToString() + ",");
+            }
+            returnBuilder.Remove(returnBuilder.ToString().LastIndexOf(','), 1); // Removing last ',' to make it valid json
+            returnBuilder.Append("]");
+            return Ok(returnBuilder.ToString());
+        }
 
         [HttpGet("status")]
         [OpenApiOperation(Constants.SS13StatusSummary, Constants.SS13StatusDescription)]
@@ -58,6 +81,7 @@ namespace SS13ServerApi.Controllers
             }
             catch (System.Net.Sockets.SocketException e)
             {
+                // Return badrequest to tell the consumer they fucked up
                 return BadRequest(new
                 {
                     Title = "One or more validation errors occured",
