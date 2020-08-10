@@ -19,6 +19,9 @@ namespace SS13ServerApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Enable CORS Stuff (no glue what this even is)
+            services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
             services.AddControllers();
 
             // Register the Swagger services
@@ -31,6 +34,9 @@ namespace SS13ServerApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // More CORS Stuff
+            app.UseCors(); // Without policy (uses default)
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
