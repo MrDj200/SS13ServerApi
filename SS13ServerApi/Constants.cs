@@ -7,5 +7,9 @@
 
         public const string SS13HubToJsonSummary = "SpaceStation 13 Hub to json";
         public const string SS13HubToJsonDescription = "Converts the BYOND SS13 Hub to friendly json";
+
+        // TODO: this below
+        public const string CSPCSummary = "CSPC Summary";
+        public const string CSPCDescription = "CSPC Description";
     }
 }

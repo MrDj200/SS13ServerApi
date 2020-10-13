@@ -4,10 +4,7 @@ using NSwag.Annotations;
 using SS13ServerApi.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,6 +20,7 @@ namespace SS13ServerApi.Controllers
         [OpenApiIgnore]
         public ActionResult Get() => Redirect("/swagger/index.html#/SS13");
 
+#region Only runs in DEBUG mode:
 #if DEBUG
         [HttpGet("test")]
         public ActionResult Test([FromQuery] string address = "whipit.de", [FromQuery] ushort port = 1337, [FromQuery] string query = "status")
@@ -45,6 +43,7 @@ namespace SS13ServerApi.Controllers
             }
         }
 #endif
+#endregion
         [HttpGet("hubInfoJson")]
         [OpenApiOperation(Constants.SS13HubToJsonSummary, Constants.SS13HubToJsonDescription)]
         public async Task<ActionResult> GetHubInfoJson()
