@@ -44,6 +44,7 @@ namespace SS13ServerApi.Controllers
         }
 #endif
 #endregion
+
         [HttpGet("hubInfoJson")]
         [OpenApiOperation(Constants.SS13HubToJsonSummary, Constants.SS13HubToJsonDescription)]
         public async Task<ActionResult> GetHubInfoJson()

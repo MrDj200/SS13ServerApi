@@ -11,13 +11,13 @@ namespace SS13ServerApi.Controllers
 {
     [Route("[controller]")]
     [RequestRateLimit(MaxAmount = 20, Seconds = 1)]
+    [OpenApiController("TEST")]
     [ApiController]
     // Curse ServerPack Creator
     public class CSPCController : ControllerBase
     {
         [HttpGet("new")]
-        [OpenApiOperation(Constants.CSPCSummary, Constants.CSPCDescription)]
-        [OpenApiController("TEST")]
+        [OpenApiOperation(Constants.CSPCSummary, Constants.CSPCDescription)]        
         public async Task<ActionResult> CreateNewRequest([FromQuery] ushort id = 0)
         {
             // TODO: Think about how I wanna cache responses

@@ -8,6 +8,10 @@ namespace SS13ServerApi.ChangeMySkin.Responses
 {
     internal class AuthenticateResponse : Response
     {
+        public AuthenticateResponse(Response response) : base(response)
+        {
+        }
+
         /// <summary>
         /// Access Token for this user
         /// </summary>
